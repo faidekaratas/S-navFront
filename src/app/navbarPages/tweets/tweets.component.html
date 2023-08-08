@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="header" style="color: #fff;">
+    <h1>Tweet List</h1>
+    <p-button label="Add" icon="pi pi-plus" styleClass=" p-button-secondary" (click)="onCreate(tweetRequest)"></p-button>
+  </div>
+  <div class="card" *ngFor="let tweet of tweet">
+    <div class="card-body">
+      <p>{{tweet.text}}</p>
+      <div class="button-group">
+        <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-warning" (click)="editTweet(tweet.id)"></p-button>
+        <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger" (click)="deleteTweet(tweet.id)"></p-button>
+        <div class="modal fade" tabindex="-1" [class.show]="openModel">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-body">
+                      <p>Bu tweeti silmek istediğinize emin misiniz?</p>
+                  </div>
+                  <div class="modal-footer">
+                      <p-button icon="pi pi-check" styleClass="p-button-success"
+                          (click)="deleteTweet(tweet.id)"></p-button> 
+                      <p-button icon="pi pi-times" styleClass="p-button-danger"
+                          (click)="closeModal()"></p-button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog class="modalReg" [(visible)]="tweetAddDialog" [style]="{ width: '450px' }" header="Tweet Add" [modal]="true"
+  styleClass="p-fluid">
+
+  <div class="registration-form">
+    <form>
+        <div class="form-group">
+            <input [(ngModel)]="tweetRequest.text" [ngModelOptions]="{standalone: true}" 
+            type="text" class="form-control item" id="AddTweet" placeholder="Tweet text">
+        </div>
+        <div class="form-group">
+            <button id="addUserBtn" type="button" class="btn btn-block create-account" (click)="onCreate(tweetRequest)"> Add Tweet </button>
+        </div>
+    </form>
+</div>
+
+</p-dialog>
+
+<p-dialog class="modalReg" *ngIf="TweetToEdit" [(visible)]="tweetEditDialog" [style]="{ width: '450px' }" header="Tweet Edit" [modal]="true"
+styleClass="p-fluid">
+<div class="registration-form">
+    <form>
+
+        <div class="form-group">
+            <input [(ngModel)]="TweetToEdit.text" [ngModelOptions]="{standalone: true}" 
+            type="text" class="form-control item" id="text" placeholder="Tweet text">
+        </div>
+        <button pButton pRipple label="Update" icon="pi pi-check" class="p-button-text"
+        (click)="onUpdate(TweetToEdit.id, TweetToEdit)"></button>
+
+
+    </form>
+</div>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

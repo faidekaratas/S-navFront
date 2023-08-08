@@ -1,0 +1,13 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="header" style="color: #fff;">
+        <h1>User List</h1>
+
+    </div>
+    <div class="card" *ngFor="let user of users">
+        <div class="card-body">
+            <h5 class="card-title">{{user.userName}} ,{{user.surName}}</h5>
+            <p class="card-text">{{user.email}} ,{{user.phoneNumber}}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="header" style="color: #fff;">
+    <h1>To Do List</h1>
+    <p-button label="Add" icon="pi pi-plus" styleClass=" p-button-secondary"></p-button>
+
+  </div>
+  <div class="card" *ngFor="let tweets of tweet">
+    <div class="card-body">
+      <p>{{tweets.text}}</p>
+      <div class="button-group">
+      <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-warning"></p-button>
+      <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger"></p-button>
+    </div>
+    </div>
+  </div>
+</div>
